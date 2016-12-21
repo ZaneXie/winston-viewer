@@ -10,6 +10,9 @@ import glob = require("glob");
 import path = require('path');
 import KoaRouter = require('koa-router');
 import {IRouterContext} from "koa-router";
+import {readFileSync} from "fs";
+const viewer = require('winston-viewer-static');
+const koaStatic = require('koa-router-static');
 
 declare module  '~koa/lib/request' {
     export interface Request {
@@ -93,6 +96,7 @@ export function Service(option: IOption) {
     }
     let router = new KoaRouter(routerOption);
 
+
     router.get('/loggers', function*(this: IRouterContext, next) {
         this.body = JSON.stringify(Object.keys(transports));
         yield next;
@@ -111,5 +115,17 @@ export function Service(option: IOption) {
         yield next;
     });
 
+    if(option.prefix){
+        let file:string = path.resolve(viewer.static, 'index.html');
+        let content = readFileSync(file, 'utf-8');
+        content = content.replace("</head>", `<script>window['winston-viewer-config']={prefix:'${option.prefix}'}</script></head>`)
+        let serveIndex = function*(this:IRouterContext, next){
+            this.body = content;
+            yield next;
+        }
+        router.get("/index.html", serveIndex)
+        router.get("/", serveIndex)
+    }
+    router.get("/*", koaStatic(viewer.static))
     return router.routes();
 }
