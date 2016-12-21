@@ -3,6 +3,10 @@
   "version": "1.0.6",
   "description": "",
   "main": "index.js",
+  "repository":{
+    "type": "git",
+    "url": "https://github.com/ZaneXie/winston-viewer"
+  },
   "scripts": {
     "build": "tsc -p .",
     "test": "echo \"Error: no test specified\" && exit 1"
