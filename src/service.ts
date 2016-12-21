@@ -4,7 +4,6 @@
 
 import winston = require("winston");
 import Bluebird = require("bluebird");
-import lodash = require('lodash');
 import {FileTransportInstance} from "winston";
 import glob = require("glob");
 import path = require('path');
@@ -20,7 +19,7 @@ declare module  '~koa/lib/request' {
     }
 }
 
-interface IOption {
+export interface IOption {
     prefix?: string,
     winston?,
     log_files?,
@@ -50,7 +49,6 @@ function createQuery(opts: {transports: {}}) {
     return (options: IQueryOption) => {
         if (options.name && opts.transports[options.name]) {
             let name: string = options.name;
-            console.log(options.options);
             return x(opts.transports[options.name], options.options).then((result) => {
                 let ret = {};
                 ret[name] = result;
@@ -65,9 +63,9 @@ function createQuery(opts: {transports: {}}) {
             }
             return Bluebird.all(jobs).then((results) => {
                 let ret = {};
-                lodash.each(results, (result) => {
+                for (let result of results) {
                     ret[result['name']] = result.result;
-                })
+                }
                 return ret;
             });
         }
@@ -115,11 +113,11 @@ export function Service(option: IOption) {
         yield next;
     });
 
-    if(option.prefix){
-        let file:string = path.resolve(viewer.static, 'index.html');
+    if (option.prefix) {
+        let file: string = path.resolve(viewer.static, 'index.html');
         let content = readFileSync(file, 'utf-8');
         content = content.replace("</head>", `<script>window['winston-viewer-config']={prefix:'${option.prefix}'}</script></head>`)
-        let serveIndex = function*(this:IRouterContext, next){
+        let serveIndex = function*(this: IRouterContext, next) {
             this.body = content;
             yield next;
         }

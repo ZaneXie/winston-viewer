@@ -2,17 +2,23 @@
  * Created by xiezongjun on 2016-12-20.
  */
 
-import Koa = require('koa');
 import path = require('path');
+import {Service, IOption} from "./src/service";
 
-const viewer = require('winston-viewer');
+export const winston_viewer_koa_middleware = Service;
 
-import {Service} from "./src/service";
+interface IAppOption extends IOption {
+    port?: number;
+}
 
-let app = new Koa();
-app.use(Service({
-    log_files: path.resolve(__dirname, './logs/*log*'),
-    prefix:"http://www.baidu.com/log"
-}));
-app.listen(3000);
-// app.use(require('koa-static')(viewer.static));
+export const winston_viewer = (option: IAppOption) => {
+    let Koa;
+    try {
+        Koa = require('koa');
+    } catch (err) {
+        throw new Error("You should install koa first. (npm install koa)")
+    }
+    let app = new Koa();
+    app.use(Service(option));
+    app.listen(option.port || 3000);
+}
