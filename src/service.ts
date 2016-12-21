@@ -34,6 +34,10 @@ interface IQueryOption {
 function createQuery(opts: {transports: {}}) {
     function x(query, options) {
         return new Bluebird((resolve, reject) => {
+            // if query.query is not a function, return {}. Used for deal with transport like Console.
+            if(!query.query){
+                resolve({});
+            }
             query.query(options, (err, results) => {
                 if (err) {
                     reject(err);
