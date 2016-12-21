@@ -12,6 +12,7 @@ npm install --save winston-viewer
 
 #### Usage
 ##### Used as standalone web app
+In this mode, you should install koa first (npm install koa).
 ```javascript
 var winston_viewer = require('winston_viewer');
 winston_viewer.winston_viewer({
