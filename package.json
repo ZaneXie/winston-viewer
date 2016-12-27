@@ -1,6 +1,6 @@
 {
   "name": "winston-viewer",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A winston logger viewer built on vue.js as koa",
   "main": "index.js",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "https://github.com/ZaneXie/winston-viewer"
   },
   "scripts": {
-    "prepublish":"npm run build",
+    "prepublish": "npm run build",
     "build": "tsc -p .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
