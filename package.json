@@ -8,6 +8,7 @@
     "url": "https://github.com/ZaneXie/winston-viewer"
   },
   "scripts": {
+    "prepublish":"npm run build",
     "build": "tsc -p .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -32,7 +33,6 @@
     "glob": "^7.1.1",
     "koa-router": "^5.4.0",
     "koa-router-static": "^1.2.0",
-    "lodash": "^4.17.2",
     "winston": "^2.3.0",
     "winston-viewer-static": "^1.0.0"
   }
