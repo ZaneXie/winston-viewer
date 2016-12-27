@@ -7,11 +7,5 @@
   },
   "exclude": [
     "node_modules"
-  ],
-  "include":[
-    "src/**/*",
-    "typings/**/*",
-    "index.ts",
-    "node_modules/@types/**/*"
   ]
 }

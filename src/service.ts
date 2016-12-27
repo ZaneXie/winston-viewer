@@ -13,12 +13,6 @@ import {readFileSync} from "fs";
 const viewer = require('winston-viewer-static');
 const koaStatic = require('koa-router-static');
 
-declare module  '~koa/lib/request' {
-    export interface Request {
-        body: any;
-    }
-}
-
 export interface IOption {
     prefix?: string,
     winston?,

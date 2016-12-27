@@ -14,6 +14,14 @@
   "author": "xiezongjun <xiezjsc@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/bluebird": "^3.0.36",
+    "@types/fs-extra-promise": "0.0.30",
+    "@types/glob": "^5.0.30",
+    "@types/koa": "^2.0.37",
+    "@types/koa-router": "^7.0.21",
+    "@types/lodash": "^4.14.44",
+    "@types/node": "^6.0.53",
+    "@types/winston": "0.0.32",
     "typescript": "^2.1.4"
   },
   "peerDependencies": {
