@@ -3,15 +3,13 @@
 A winston log viewer based on Vue.js and koa. This is the backend part, frontend part can be found at 
 [winston-viewer-static](https://github.com/ZaneXie/winston-viewer-static).
 
-## Usage
-
-#### Install
+## Install
 ```bash
 npm install --save winston-viewer
 ```
 
-#### Usage
-##### Used as standalone web app
+## Usage
+### Used as standalone web app
 In this mode, you should install koa first (npm install koa).
 ```javascript
 var winston_viewer = require('winston_viewer');
@@ -29,7 +27,7 @@ winston_viewer.winston_viewer({
 ```
 Then it can be visited as http://localhost:3000/log/ (don't forget the final '/')
 
-##### Used as middleware for a existing koa app
+### Used as middleware for a existing koa app
 
 ```javascript
 
@@ -50,9 +48,6 @@ This project is a Typescript project.
 ```bash
 # install dependency
 npm install
-
-# install typescript definition files
-typings install # if typings not found, use npm install -g typings
 
 # do build
 npm run build
